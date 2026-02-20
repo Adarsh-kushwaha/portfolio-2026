@@ -20,6 +20,7 @@ export default function Contact() {
 
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "rate-limited">("idle");
+  const isFormValid = form.name.trim() !== "" && form.email.trim() !== "" && form.subject.trim() !== "" && form.message.trim() !== "";
 
   const checkRateLimit = () => {
     const lastSent = localStorage.getItem("contact_form_last_sent");
@@ -197,7 +198,7 @@ export default function Contact() {
                 </div>
                 <motion.button
                   type="submit"
-                  disabled={status === "sending"}
+                  disabled={status === "sending" || !isFormValid}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-3 px-6 rounded-xl btn-primary font-heading font-600 text-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
