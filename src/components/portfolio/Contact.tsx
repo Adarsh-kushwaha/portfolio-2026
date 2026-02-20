@@ -254,7 +254,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Reading</p>
-                    <p className="text-sm text-foreground">"Midnight's Children" — Salman Rushdie</p>
+                    <p className="text-sm text-foreground">"The Help" - Kathryn Stockett</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
@@ -263,7 +263,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Listening</p>
-                    <p className="text-sm text-foreground">Phoebe Bridgers + Late Night Indie Lo-fi</p>
+                    <p className="text-sm text-foreground">Chupke Chupke Raat Din - Ghulam Ali</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
@@ -272,7 +272,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Based in</p>
-                    <p className="text-sm text-foreground">Mumbai, Maharashtra, India 🇮🇳</p>
+                    <p className="text-sm text-foreground">Pune, Maharashtra, India 🇮🇳</p>
                   </div>
                 </div>
               </div>
