@@ -21,10 +21,10 @@ const particles = [
 ];
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/adarshkushwaha", label: "GitHub" },
+  { icon: Github, href: "https://github.com/Adarsh-kushwaha", label: "GitHub" },
   { icon: Linkedin, href: "https://linkedin.com/in/adarshkushwaha", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/adarshkushwaha", label: "Twitter" },
-  { icon: Mail, href: "mailto:adarsh@example.com", label: "Email" },
+  { icon: Twitter, href: "https://twitter.com/heyadarshhere", label: "Twitter" },
+  { icon: Mail, href: "mailto:adarshkushwaha296@gmail.com", label: "Email" },
 ];
 
 const itemVariant = {
@@ -79,7 +79,7 @@ export default function Hero() {
           >
             {/* Label */}
             <motion.div variants={itemVariant} transition={{ duration: 0.6 }} className="flex items-center gap-3">
-              <span className="section-label">Frontend Developer · Mumbai, India</span>
+              <span className="section-label">Frontend Developer · Pune, India</span>
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-xs text-foreground-muted">Available for opportunities</span>
             </motion.div>
@@ -190,8 +190,8 @@ export default function Hero() {
                 transition={{ delay: 1 }}
                 className="absolute -left-4 bottom-12 glass-card rounded-xl px-4 py-2 border border-gold/30"
               >
-                <p className="text-xs text-foreground-muted font-body">Projects</p>
-                <p className="text-base font-heading font-700 text-gradient-gold">20+</p>
+                <p className="text-xs text-foreground-muted font-body">Skills</p>
+                <p className="text-base font-heading font-700 text-gradient-gold">React & Next</p>
               </motion.div>
             </div>
           </motion.div>

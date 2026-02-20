@@ -14,7 +14,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Journey", href: "#journey" },
   { label: "Work", href: "#work" },
-  { label: "The Human", href: "#human" },
+  { label: "Whoami", href: "#human" },
   { label: "Connect", href: "#connect" },
 ];
 
@@ -48,11 +48,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg-dark"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg-dark"
+          : "bg-transparent"
+          }`}
       >
         <div className="container-max section-padding py-0">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -67,7 +66,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 <span className="font-heading text-sm font-700 text-primary-foreground">AK</span>
               </div>
               <span className="hidden sm:block font-heading font-600 text-foreground text-lg tracking-tight">
-                Adarsh<span className="text-gradient-teal">.dev</span>
+                Adarsh<span className="text-gradient-teal">{" "}Kushwaha</span>
               </span>
             </motion.a>
 

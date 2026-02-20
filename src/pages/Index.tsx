@@ -12,7 +12,7 @@ import Work from "@/components/portfolio/Work";
 import TheHuman from "@/components/portfolio/TheHuman";
 import Testimonials from "@/components/portfolio/Testimonials";
 import Contact from "@/components/portfolio/Contact";
-import Footer from "@/components/portfolio/Footer";
+
 
 type Theme = "dark" | "light";
 
@@ -52,11 +52,8 @@ export default function Index() {
         <Journey />
         <Work />
         <TheHuman />
-        <Testimonials />
         <Contact />
       </main>
-
-      <Footer />
     </div>
   );
 }

@@ -37,21 +37,21 @@ const values = [
 ];
 
 const hobbies = [
-  { icon: Camera, label: "Street Photography", desc: "Mumbai has infinite frames" },
-  { icon: BookOpen, label: "Fiction Reading", desc: "Currently: Midnight's Children" },
-  { icon: ChefHat, label: "Cooking", desc: "Biryani is my magnum opus" },
-  { icon: MapPin, label: "Long City Walks", desc: "Marine Drive at dusk, always" },
-  { icon: Music, label: "Indie Music", desc: "Lo-fi + jazz while coding" },
-  { icon: Dumbbell, label: "Badminton", desc: "Terrible but enthusiastic" },
+  { icon: Camera, label: "Making Videos", desc: "I love making videos on youtube" },
+  { icon: BookOpen, label: "Fiction Reading", desc: "Currently reading Mahabhoj" },
+  { icon: ChefHat, label: "Cooking", desc: "Kadhai Paneer is my magnum opus" },
+  { icon: MapPin, label: "Long City Walks", desc: "Tamini Ghat at dusk, always" },
+  { icon: Music, label: "Indie Music", desc: "I love listening to indie music" },
+  { icon: Dumbbell, label: "Cricket", desc: "Terrible but enthusiastic" },
 ];
 
 const funFacts = [
-  "I've walked the entire stretch of Marine Drive at least 50 times — each time feels different",
-  "My Spotify Wrapped has embarrassingly included the same song for 4 years in a row",
-  "I once stayed up till 4am fixing a CSS z-index bug. The fix was `z-index: 1;`",
-  "I give honest restaurant reviews to family WhatsApp groups and have caused mild family drama",
-  "I've read the React docs in full, twice. On purpose. Voluntarily.",
-  "I can identify Mumbai neighbourhoods by smell. Dharavi smells like industry. Bandra smells like brunch.",
+  "I say I’m not hungry and then finish everyone’s food.",
+  "I overthink one text to my crush and send ‘ok’.",
+  "I dream big at night and hit snooze in the morning.",
+  "I plan my life on Monday and mess it up by Tuesday.",
+  "I act calm in public but panic quietly inside.",
+  "I do dumb things sometimes and call it ‘learning’.",
 ];
 
 export default function TheHuman() {
@@ -156,17 +156,17 @@ export default function TheHuman() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h3 className="text-xl font-heading font-700 text-foreground mb-6">
-              A Sunday in Mumbai ☀️
+              A Sunday in Pune ☀️
             </h3>
             <div className="glass-card rounded-2xl border border-border p-6 space-y-4">
               {[
-                { time: "7:30 AM", event: "Wake up, ignore 3 alarms, make chai", icon: "☕" },
-                { time: "9:00 AM", event: "Walk to the local Irani cafe for Bun Maska + newspaper", icon: "📰" },
-                { time: "11:00 AM", event: "Street photography walk around Bandra or Colaba", icon: "📸" },
-                { time: "1:00 PM", event: "Experiment in the kitchen (biryani Sundays are sacred)", icon: "🍛" },
-                { time: "3:00 PM", event: "Deep work: personal project or reading fiction", icon: "💻" },
-                { time: "6:00 PM", event: "Marine Drive walk with family or a friend", icon: "🌅" },
-                { time: "9:00 PM", event: "Dinner, lo-fi jazz, one last PR review, sleep", icon: "🌙" },
+                { time: "7:30 AM", event: "Wake up, hit snooze 2–3 times, scroll phone for ‘5 mins’", icon: "📱" },
+                { time: "9:00 AM", event: "Chai + light breakfast while thinking about pending work/interviews", icon: "☕" },
+                { time: "11:00 AM", event: "Work / study block (fixing bugs, prep, or learning something new)", icon: "💻" },
+                { time: "2:00 PM", event: "Lunch / random YouTube break that lasts longer than planned", icon: "🍽️" },
+                { time: "6:00 PM", event: " Study Short walk / fresh air / mental break (deciding to ‘be healthy’)", icon: "🚶" },
+                { time: "9:30 PM", event: "Dinner + light scrolling + overthinking tomorrow’s plan", icon: "🌙" },
+                { time: "12:30 AM", event: "One last thing on laptop that turns into a late night", icon: "💤" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4">
                   <span className="text-base flex-shrink-0 mt-0.5">{item.icon}</span>

@@ -7,11 +7,11 @@ import { useRef, useState } from "react";
 import { Mail, Github, Linkedin, Twitter, Instagram, Send, BookOpen, Music2, MapPin } from "lucide-react";
 
 const socialLinks = [
-  { icon: Mail, label: "Email", handle: "adarsh@example.com", href: "mailto:adarsh@example.com", color: "hover:text-primary" },
+  { icon: Mail, label: "Email", handle: "adarshkushwaha296@gmail.com", href: "mailto:adarshkushwaha296@gmail.com", color: "hover:text-primary" },
   { icon: Linkedin, label: "LinkedIn", handle: "linkedin.com/in/adarshkushwaha", href: "https://linkedin.com/in/adarshkushwaha", color: "hover:text-primary" },
-  { icon: Github, label: "GitHub", handle: "github.com/adarshkushwaha", href: "https://github.com/adarshkushwaha", color: "hover:text-primary" },
-  { icon: Twitter, label: "Twitter / X", handle: "@adarshkushwaha", href: "https://twitter.com/adarshkushwaha", color: "hover:text-primary" },
-  { icon: Instagram, label: "Instagram", handle: "@adarsh.frames", href: "https://instagram.com", color: "hover:text-gold" },
+  { icon: Github, label: "GitHub", handle: "github.com/Adarsh-kushwaha", href: "https://github.com/Adarsh-kushwaha", color: "hover:text-primary" },
+  { icon: Twitter, label: "Twitter / X", handle: "@heyadarshhere", href: "https://twitter.com/heyadarshhere", color: "hover:text-primary" },
+  { icon: Instagram, label: "Instagram", handle: "adarshkushwaha.in", href: "https://instagram.com/adarshkushwaha.in", color: "hover:text-gold" },
 ];
 
 export default function Contact() {
@@ -19,7 +19,21 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error" | "rate-limited">("idle");
+
+  const checkRateLimit = () => {
+    const lastSent = localStorage.getItem("contact_form_last_sent");
+    if (lastSent) {
+      const lastSentDate = new Date(parseInt(lastSent));
+      const now = new Date();
+      const diff = now.getTime() - lastSentDate.getTime();
+      const twentyFourHours = 24 * 60 * 60 * 1000;
+      if (diff < twentyFourHours) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -27,11 +41,44 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (checkRateLimit()) {
+      setStatus("rate-limited");
+      return;
+    }
+
     setStatus("sending");
-    // Simulate send — replace with your email service (Resend / EmailJS)
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("sent");
-    setForm({ name: "", email: "", subject: "", message: "" });
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "6d43cf95-3c5c-468d-ae4d-770273dfcf7e",
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+        localStorage.setItem("contact_form_last_sent", new Date().getTime().toString());
+      } else {
+        console.error("Error submitting form:", result);
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("error");
+    }
   };
 
   const inputClasses =
@@ -83,6 +130,32 @@ export default function Contact() {
                 <p className="text-foreground-muted text-sm">I'll get back to you within 24 hours. Promise.</p>
                 <button onClick={() => setStatus("idle")} className="mt-6 text-sm text-primary hover:text-primary-glow transition-colors">
                   Send another message →
+                </button>
+              </motion.div>
+            ) : status === "rate-limited" ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="h-full flex flex-col items-center justify-center glass-card rounded-2xl border border-gold/30 p-12 text-center"
+              >
+                <span className="text-5xl mb-4">⏳</span>
+                <h3 className="text-xl font-heading font-700 text-foreground mb-2">Slow down!</h3>
+                <p className="text-foreground-muted text-sm">You've already sent a message recently. Please wait 24 hours before sending another one.</p>
+                <button onClick={() => setStatus("idle")} className="mt-6 text-sm text-primary hover:text-primary-glow transition-colors">
+                  Go back →
+                </button>
+              </motion.div>
+            ) : status === "error" ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="h-full flex flex-col items-center justify-center glass-card rounded-2xl border border-red-500/30 p-12 text-center"
+              >
+                <span className="text-5xl mb-4">❌</span>
+                <h3 className="text-xl font-heading font-700 text-foreground mb-2">Something went wrong!</h3>
+                <p className="text-foreground-muted text-sm">Please try again or contact me directly via email.</p>
+                <button onClick={() => setStatus("idle")} className="mt-6 text-sm text-primary hover:text-primary-glow transition-colors">
+                  Try again →
                 </button>
               </motion.div>
             ) : (

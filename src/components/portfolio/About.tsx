@@ -14,7 +14,7 @@ const fadeUp = {
 
 const highlights = [
   { icon: Code2, label: "React Specialist", desc: "Building enterprise-scale UIs" },
-  { icon: MapPin, label: "Based in Mumbai", desc: "The city that never sleeps" },
+  { icon: MapPin, label: "Based in Pune", desc: "The city is so pretty" },
   { icon: Heart, label: "Design-first", desc: "Pixel perfection matters" },
   { icon: Coffee, label: "Coffee Addict", desc: "3 cups minimum per day" },
 ];
@@ -56,11 +56,11 @@ export default function About() {
               <p>
                 I'm a Frontend Developer with <strong className="text-foreground">3+ years of experience</strong> crafting
                 high-performance web applications for corporate and startup environments alike.
-                Currently based in Mumbai — the city that taught me to move fast without breaking things.
+                Currently based in Pune — the city that taught me to move fast without breaking things.
               </p>
               <p>
-                I specialize in <strong className="text-primary">React</strong>,{" "}
-                <strong className="text-primary">TypeScript</strong>, and building scalable design
+                I specialize in <strong className="text-primary">React</strong>,{" "}<strong className="text-primary">Next.js</strong>,{" "}
+                <strong className="text-primary">Javascript</strong>, and building scalable design
                 systems that teams actually love using. I believe great frontend is the invisible
                 bridge between product intent and user delight.
               </p>
@@ -111,27 +111,25 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-xs text-foreground/80 font-body italic">
-                  📍 My second office — any cafe with good filter coffee and fast WiFi
+                  📍 My second office — my home with good filter coffee and fast WiFi
                 </p>
               </div>
             </div>
 
             <div className="space-y-4 text-foreground-muted leading-relaxed text-sm md:text-base">
               <p>
-                Beyond the editor, I'm a <strong className="text-foreground">curious generalist</strong> who finds
-                joy in long evening walks along Marine Drive, getting lost in literary fiction,
-                experimenting in the kitchen, and occasionally embarrassing myself on the badminton court.
+                Beyond the editor, I'm a <strong className="text-foreground">curious generalist</strong> who enjoys
+                unwinding with good films, getting lost in books, and experimenting in the kitchen after a long day in Pune.
               </p>
               <p>
-                Family keeps me grounded. Mumbai keeps me hungry. And my ongoing obsession with
-                street photography keeps me looking up from the screen long enough to remember
-                there's a beautiful world to build things for.
+                Living in Pune keeps me balanced — the calm pace, great weather, and weekend getaways offer the perfect reset.
+                Movies and reading help me switch contexts, while cooking lets me slow down and build something tangible.
               </p>
               <p>
                 I value <span className="text-gold">honesty</span>,{" "}
                 <span className="text-gold">craft</span>,{" "}
-                <span className="text-gold">continuous learning</span>, and the kind of
-                collaboration where everyone leaves the meeting smarter than they entered.
+                <span className="text-gold">continuous learning</span>, and meaningful
+                collaboration where everyone leaves the room with clearer thinking than they walked in with.
               </p>
             </div>
           </motion.div>

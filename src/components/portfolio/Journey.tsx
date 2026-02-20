@@ -19,59 +19,86 @@ interface Role {
 
 const roles: Role[] = [
   {
-    title: "Senior Frontend Developer",
-    company: "TechCorp India",
-    location: "Mumbai, IN",
-    period: "2023 — Present",
+    title: "Software Engineer (Frontend)",
+    company: "Bajaj Finserv Health",
+    location: "Pune, IN",
+    period: "Dec 2024 — Present",
     type: "Full-time",
     current: true,
     achievements: [
-      "Led migration of legacy jQuery codebase to React 18 + TypeScript, reducing bundle size by 42%",
-      "Architected a shared design system used by 8 product teams, cutting UI dev time by 60%",
-      "Improved Core Web Vitals scores from 45 → 92 LCP, achieving top 10% performance tier",
-      "Mentored 4 junior developers through structured pair-programming and code reviews",
+      "Built a Next.js portal to manage AI voice campaigns with configurable workflows, reducing release dependency and improving ops turnaround time",
+      "Developed a shared frontend platform supporting 6 agent apps with reusable UI modules, achieving ~70% component reusability",
+      "Implemented a dynamic form engine to render backend schemas into role-based, stateful UIs, enabling video KYC and geo-tagged media capture",
+      "Improved Lighthouse performance from ~60 to ~95 by optimizing rendering, bundle size, SEO basics, and accessibility",
     ],
-    tech: ["React 18", "TypeScript", "Tailwind CSS", "Storybook", "Vite"],
+    tech: ["Next.js", "React", "TypeScript", "Shadcn UI", "React Hook Form"],
   },
   {
-    title: "Frontend Developer",
-    company: "StartupHub",
-    location: "Mumbai, IN",
-    period: "2022 — 2023",
+    title: "Associate Software Engineer (Frontend)",
+    company: "Bajaj Finserv Health",
+    location: "Pune, IN",
+    period: "Jul 2023 — Nov 2024",
     type: "Full-time",
     achievements: [
-      "Built the company's public-facing marketing site from scratch — 0 to launch in 6 weeks",
-      "Implemented real-time dashboard with WebSocket integration serving 10K+ concurrent users",
-      "Reduced page load time by 35% through code splitting, lazy loading, and image optimization",
-      "Collaborated with design team to ship 3 major product features ahead of schedule",
+      "Built a scalable React/Next.js lab booking interface for B2B use cases, improving booking completion rates and user flow",
+      "Optimized frontend performance with client-side caching and optimistic UI updates, reducing perceived booking time by ~60%",
+      "Implemented location-aware UI to surface nearest service providers, improving conversion by ~20%",
+      "Developed an AI-assisted call processing interface to visualize long-form transcriptions and translations for operations teams",
     ],
-    tech: ["React", "Next.js", "Framer Motion", "React Query", "SCSS"],
+    tech: ["React", "Next.js", "TypeScript", "React Query", "Tailwind CSS"],
   },
   {
-    title: "Junior Frontend Developer",
-    company: "WebAgency Co.",
-    location: "Mumbai, IN",
-    period: "2021 — 2022",
-    type: "Full-time",
-    achievements: [
-      "Delivered 12+ client websites with pixel-perfect implementation of Figma designs",
-      "Built reusable component library that accelerated project delivery by 25%",
-      "First to introduce TypeScript to the team — now standard across all projects",
-    ],
-    tech: ["React", "JavaScript", "CSS3", "Figma", "WordPress"],
-  },
-  {
-    title: "Frontend Intern",
-    company: "DigiSolutions",
-    location: "Mumbai, IN",
-    period: "2020 — 2021",
+    title: "Frontend Developer Intern",
+    company: "Bajaj Finserv Health",
+    location: "Pune, IN",
+    period: "Jan 2023 — Jun 2023",
     type: "Internship",
     achievements: [
-      "Learned React and shipped my first production feature in week 3",
-      "Redesigned the company's internal admin panel, receiving team-wide recognition",
-      "Converted the whole team to using VS Code + ESLint + Prettier 😄",
+      "Reduced payment and invoice screen load time from ~2s to ~500ms using code splitting, lazy loading, and component restructuring",
+      "Integrated a scan-and-pay UI module into the payment flow, improving checkout speed and reliability for high-volume usage",
+      "Refactored UI components into reusable hooks and layouts, improving maintainability and development velocity",
+      "Contributed to a large-scale UI revamp by standardizing colors, typography, and theming without disrupting production",
     ],
-    tech: ["React", "HTML", "CSS", "JavaScript"],
+    tech: ["React", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    title: "Frontend Developer Intern",
+    company: "Coding Sheep Technologies LLP",
+    location: "Remote, IN",
+    period: "Oct 2022 — Dec 2022",
+    type: "Internship",
+    achievements: [
+      "Delivered responsive UI screens from Figma designs with consistent cross-browser behavior",
+      "Built reusable UI components to accelerate feature delivery across multiple client projects",
+      "Collaborated with backend developers to integrate APIs and improve end-to-end user flows",
+    ],
+    tech: ["HTML", "CSS", "JavaScript", "React", "Figma"],
+  },
+  {
+    title: "WordPress Web Developer",
+    company: "MiBi Services",
+    location: "India",
+    period: "Aug 2020 — Oct 2020",
+    type: "Contract",
+    achievements: [
+      "Built an MVP job portal website using WordPress with custom HTML and CSS for faster time-to-market",
+      "Implemented responsive UI layouts to support mobile and low-bandwidth users",
+      "Worked with CMS data models and plugins to structure content and basic workflows",
+    ],
+    tech: ["WordPress", "HTML", "CSS", "JavaScript"],
+  },
+  {
+    title: "Co-Founder & Frontend Engineer",
+    company: "Verstile",
+    location: "India",
+    period: "Jul 2020 — Sep 2021",
+    type: "Startup",
+    achievements: [
+      "Co-founded a web agency and delivered 10+ websites for education institutes during COVID",
+      "Built reusable UI templates to speed up delivery across multiple client projects",
+      "Handled client requirements, UI delivery, and performance optimization end-to-end",
+    ],
+    tech: ["HTML", "CSS", "JavaScript", "WordPress"],
   },
 ];
 
@@ -122,11 +149,10 @@ export default function Journey() {
                 className="relative pl-12 md:pl-20"
               >
                 {/* Dot */}
-                <div className={`absolute left-2.5 md:left-6 top-1.5 w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                  role.current
+                <div className={`absolute left-2.5 md:left-6 top-1.5 w-4 h-4 rounded-full border-2 flex items-center justify-center ${role.current
                     ? "border-primary bg-primary shadow-teal"
                     : "border-gold bg-gold/20"
-                }`}>
+                  }`}>
                   {role.current && (
                     <span className="w-2 h-2 rounded-full bg-primary-foreground" />
                   )}
