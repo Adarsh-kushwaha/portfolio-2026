@@ -101,7 +101,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
               {/* Resume CTA */}
               <motion.a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1IiLR7RsvmdnCjps6L4vTbuJVkH8mDVTa/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
@@ -150,7 +150,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 </motion.button>
               ))}
               <a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1IiLR7RsvmdnCjps6L4vTbuJVkH8mDVTa/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg btn-primary text-sm"
