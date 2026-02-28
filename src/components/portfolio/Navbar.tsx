@@ -15,6 +15,7 @@ const navLinks = [
   { label: "Journey", href: "#journey" },
   { label: "Work", href: "#work" },
   { label: "Whoami", href: "#human" },
+  { label: "Blog", href: "/blog" },
   { label: "Connect", href: "#connect" },
 ];
 
@@ -37,6 +38,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
   }, []);
 
   const handleNavClick = (href: string) => {
+    if (href === "/blog") {
+      window.location.href = href;
+      return;
+    }
     setMenuOpen(false);
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });

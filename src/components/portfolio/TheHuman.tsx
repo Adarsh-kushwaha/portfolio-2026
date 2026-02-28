@@ -38,11 +38,9 @@ const values = [
 
 const hobbies = [
   { icon: Camera, label: "Making Videos", desc: "I love making videos on youtube" },
-  { icon: BookOpen, label: "Fiction Reading", desc: "Currently reading Mahabhoj" },
   { icon: ChefHat, label: "Cooking", desc: "Kadhai Paneer is my magnum opus" },
   { icon: MapPin, label: "Long City Walks", desc: "Tamini Ghat at dusk, always" },
   { icon: Music, label: "Indie Music", desc: "I love listening to indie music" },
-  { icon: Dumbbell, label: "Cricket", desc: "Terrible but enthusiastic" },
 ];
 
 const funFacts = [

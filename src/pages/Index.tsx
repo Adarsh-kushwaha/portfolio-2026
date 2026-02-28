@@ -10,7 +10,6 @@ import Skills from "@/components/portfolio/Skills";
 import Journey from "@/components/portfolio/Journey";
 import Work from "@/components/portfolio/Work";
 import TheHuman from "@/components/portfolio/TheHuman";
-import Testimonials from "@/components/portfolio/Testimonials";
 import Contact from "@/components/portfolio/Contact";
 
 
@@ -53,6 +52,12 @@ export default function Index() {
         <Work />
         <TheHuman />
         <Contact />
+        {/* Footer */}
+        <footer className="border-t border-border py-8">
+          <div className="container-max px-4 sm:px-6 lg:px-8 text-center text-sm text-foreground-muted">
+            Made by Adarsh with ❤️ and way too much coffee
+          </div>
+        </footer>
       </main>
     </div>
   );
