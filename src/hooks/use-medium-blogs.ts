@@ -33,6 +33,15 @@ interface RssResponse {
     }>;
 }
 
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+};
+
 const stripHtmlAndTruncate = (html: string, wordCount: number) => {
     // Strip HTML tags using regex and replace multiple spaces/newlines with a single space
     const text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -65,7 +74,7 @@ export const useMediumBlogs = () => {
                 // Map and format the items to match desired output
                 const formattedBlogs: MediumBlog[] = data.items.map((item) => ({
                     title: item.title,
-                    date: item.pubDate,
+                    date: formatDate(item.pubDate),
                     link: item.link,
                     author: item.author,
                     description: stripHtmlAndTruncate(item.description, 40),
