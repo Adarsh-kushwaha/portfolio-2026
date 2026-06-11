@@ -79,9 +79,9 @@ export default function Hero() {
           >
             {/* Label */}
             <motion.div variants={itemVariant} transition={{ duration: 0.6 }} className="flex items-center gap-3">
-              <span className="section-label">Frontend Developer · Pune, India</span>
+              <span className="section-label">Frontend Engineer · Pune, India</span>
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-xs text-foreground-muted">Available for opportunities</span>
+              <span className="text-xs text-foreground-muted">Open for opportunities</span>
             </motion.div>
 
             {/* Headline */}
@@ -98,9 +98,7 @@ export default function Hero() {
               variants={itemVariant} transition={{ duration: 0.6 }}
               className="text-base md:text-lg text-foreground-muted leading-relaxed max-w-xl"
             >
-              I craft{" "}
-              <span className="text-foreground font-medium">pixel-perfect, delightful</span> digital
-              experiences at scale — while trying to be a decent human in the process.
+              I craft delightful, scalable experiences, tackle tricky engineering problems, mentor great people, and occasionally perform Lighthouse miracles fueled by an unreasonable amount of filter coffee.
             </motion.p>
 
             {/* CTAs */}
@@ -115,7 +113,7 @@ export default function Hero() {
                 See My Work
               </motion.a>
               <motion.a
-                href="https://drive.google.com/file/d/1IiLR7RsvmdnCjps6L4vTbuJVkH8mDVTa/view?usp=sharing"
+                href="https://drive.google.com/file/d/1gE28e8lyAEWYHOz-eKw_NkVjZMYrVDQk/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04 }}

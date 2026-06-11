@@ -255,7 +255,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Reading</p>
-                    <p className="text-sm text-foreground">"The Help" - Kathryn Stockett</p>
+                    <p className="text-sm text-foreground">"Crime And Punishment" - Fyodor Dostoevsky</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
@@ -264,7 +264,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Listening</p>
-                    <p className="text-sm text-foreground">Chupke Chupke Raat Din - Ghulam Ali</p>
+                    <p className="text-sm text-foreground">Take My True Love By The Hand  - The Limeliters</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">

@@ -23,104 +23,104 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: "nftzone",
-    title: "NFTZONE — NFT Marketplace",
-    description: "Marketplace to explore, buy, and sell NFTs.",
+    id: "campaign-workflow",
+    title: "Campaign Management System",
+    description: "Enterprise workflow builder handling 1.25L+ API calls/month across 15+ live campaigns.",
     longDescription:
-      "A full-stack NFT marketplace that allows users to browse collections, view NFT details, and simulate buying and selling digital assets with a clean, responsive UI.",
+      "Built a Next.js B2B SaaS portal with a node-based workflow builder for enterprise clients (HDFC, BALIC, TVS). System manages campaign orchestration, real-time execution monitoring, and dynamic workflow configuration. Handles 1.25L+ API calls monthly with 100K+ record virtualization and optimistic UI updates.",
     problem:
-      "Most beginner NFT platforms are cluttered and hard to navigate, creating friction for first-time users exploring digital assets.",
+      "Managing complex, multi-step campaigns required flexible workflow logic. State explosion with Redux would've created unmaintainable subscriptions. Table rendering 100K+ records crushed performance. Real-time updates needed without API overload.",
     results:
-      "Delivered a smooth browsing experience with responsive UI and optimized asset loading, improving usability and engagement.",
-    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    tags: ["Web3", "Marketplace", "Frontend"],
+      "Zustand for granular state kept complexity low. Virtualized tables handle 100K+ records at 60fps. Caching + optimistic updates reduced perceived latency by 70%. 15+ live campaigns processing millions of calls monthly with zero critical issues.",
+    tech: ["Next.js", "Zustand", "React Query", "TypeScript", "Tailwind CSS"],
+    tags: ["B2B SaaS", "Architecture", "Scale"],
     color: "primary",
-    emoji: "🖼️",
-    live: "https://nftzone.netlify.app/",
-    github: "https://github.com/Adarsh-kushwaha",
-  },
-  {
-    id: "pixbook",
-    title: "PixBook — Photo Sharing Platform",
-    description: "Social platform to share and explore photos.",
-    longDescription:
-      "A lightweight photo-sharing web app where users can upload, browse, and explore images with a simple, mobile-first interface.",
-    problem:
-      "Existing photo-sharing tools are often heavy and ad-driven, leading to slow load times and poor mobile experience.",
-    results:
-      "Built a fast, responsive UI focused on performance and usability, improving page load speed and user experience on mobile devices.",
-    tech: ["React", "Next.js", "CSS", "JavaScript"],
-    tags: ["Social", "Media", "Frontend"],
-    color: "gold",
-    emoji: "📸",
-    live: "https://pixbook.netlify.app/",
-    github: "https://github.com/Adarsh-kushwaha",
-  },
-  {
-    id: "personal-blog",
-    title: "Personal Blog Platform",
-    description: "Blog platform to write and publish articles.",
-    longDescription:
-      "A personal blogging platform with a clean reading experience, SEO-friendly pages, and support for publishing technical articles and notes.",
-    problem:
-      "Publishing technical content often requires heavy CMS setup or third-party platforms with limited customization.",
-    results:
-      "Enabled fast content publishing with optimized SEO structure and improved readability across devices.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    tags: ["Blog", "SEO", "Content"],
-    color: "primary",
-    emoji: "✍️",
-    live: "https://my-portfolio-mc7hpo1v4-adarsh-kushwaha.vercel.app/blogs",
-    github: "https://github.com/Adarsh-kushwaha",
-  },
-  {
-    id: "search-ui",
-    title: "SearchX — Google-like Search UI",
-    description: "Search engine UI clone with modern frontend.",
-    longDescription:
-      "A frontend-only clone of a search engine interface, focusing on UI fidelity, accessibility, and fast page rendering.",
-    problem:
-      "Understanding large-scale search UI patterns requires hands-on practice with layout, performance, and accessibility constraints.",
-    results:
-      "Delivered a pixel-accurate, responsive search UI with optimized rendering and keyboard accessibility support.",
-    tech: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
-    tags: ["UI Clone", "Frontend", "Practice"],
-    color: "primary",
-    emoji: "🔍",
-    live: "https://search-x.vercel.app/search",
-    github: "https://github.com/Adarsh-kushwaha",
-  },
-  {
-    id: "pulse-internal",
-    title: "Pulse — Call Recording Analytics (Internal)",
-    description: "Internal dashboard to visualize and analyze call recordings.",
-    longDescription:
-      "A secure internal web application for operations teams to review call recordings, analyze transcripts, and track call quality metrics with an intuitive UI.",
-    problem:
-      "Support teams lacked a unified UI to review call data, leading to manual workflows and delayed analysis.",
-    results:
-      "Streamlined call review workflows with centralized dashboards, improving operational efficiency and turnaround time.",
-    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    tags: ["Internal Tool", "Dashboard", "Analytics"],
-    color: "gold",
-    emoji: "🎧",
+    emoji: "⚙️",
     live: "",
     github: "",
   },
   {
-    id: "voicebot-portal",
-    title: "Voice Bot Campaign Portal (Internal)",
-    description: "Portal to configure and manage AI voice bot campaigns.",
+    id: "claim-portal",
+    title: "Claim Submission Portal (Schema-Driven Forms)",
+    description: "Dynamic form framework powering 200+ variants, 20K+ daily submissions.",
     longDescription:
-      "A web portal that enables operations teams to create, configure, and manage automated voice bot campaigns through a no-code UI interface.",
+      "Built a vendor-agnostic claim platform using custom schema-driven form framework with React Hook Form + TypeScript. Single codebase dynamically renders 200+ form variants across 10+ insurance vendors. Processes 20K+ daily submissions with conditional logic, field dependencies, and optimistic validation.",
     problem:
-      "Campaign setup required engineering involvement for every change, slowing down experiments and iterations.",
+      "Each vendor had different claim requirements — hardcoding forms meant N separate codebases. Schema-driven approach scales to new vendors without code changes. Conditional workflows needed runtime resolution, not build-time templates.",
     results:
-      "Reduced engineering dependency for campaign configuration and accelerated iteration cycles for business teams.",
-    tech: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-    tags: ["Internal Tool", "Automation", "Admin"],
+      "200+ form variants from single framework. 20K+ daily submissions at 99.3% uptime. New vendor onboarding now takes days, not weeks. Reduced codebase duplication by 85%.",
+    tech: ["Next.js", "React Hook Form", "TypeScript", "Zod", "SSR"],
+    tags: ["Framework Design", "B2B", "Forms"],
+    color: "gold",
+    emoji: "📋",
+    live: "",
+    github: "",
+  },
+  {
+    id: "performance-optimization",
+    title: "Performance & Bundle Optimization",
+    description: "Reduced bundle 76%, improved LCP 5.3s→1.2s, Lighthouse 60→95.",
+    longDescription:
+      "Systematic performance audit across Bajaj Health portals. Identified JavaScript bloat from vendor dependencies, inefficient code splitting, and unoptimized image delivery. Applied code splitting, SSR, image optimization, and render-path refactoring across multiple applications.",
+    problem:
+      "Bundle size 2.5 MB, LCP 5.3s, Lighthouse score 60. Users on 3G networks experienced 10+ second load times. Vendor dependencies weren't tree-shaking properly. Images served at full resolution regardless of device.",
+    results:
+      "Bundle: 2.5 MB → 600 KB (76% reduction). LCP: 5.3s → 1.2s. Lighthouse: 60 → 95. Crash-free rate: 96% → 99.3%. Real-world improvement: 3G users now see interactive content in <2s.",
+    tech: ["Code Splitting", "SSR", "Image Optimization", "Webpack", "Vite"],
+    tags: ["Performance", "Optimization", "DevOps"],
     color: "primary",
-    emoji: "🤖",
+    emoji: "⚡",
+    live: "",
+    github: "",
+  },
+  {
+    id: "analytics-dashboard",
+    title: "Real-Time Analytics Dashboard",
+    description: "GraphQL-optimized dashboard reducing API requests by 25%.",
+    longDescription:
+      "Built operational analytics dashboard using GraphQL subscriptions and React Query. Real-time call performance metrics, cost tracking, and business KPIs. Optimized GraphQL queries to reduce request volume while maintaining freshness.",
+    problem:
+      "Multiple data sources (call metrics, costs, KPIs) required separate REST calls. Over-fetching led to 40+ API calls per dashboard load. Real-time updates needed without constant polling.",
+    results:
+      "Consolidated to 3 GraphQL queries per dashboard. 25% reduction in API requests. Real-time metrics with <500ms update latency. Improved decision-making efficiency for ops teams.",
+    tech: ["GraphQL", "React Query", "TypeScript", "Real-time Subscriptions"],
+    tags: ["Dashboard", "Data Fetching", "Real-time"],
+    color: "gold",
+    emoji: "📊",
+    live: "",
+    github: "",
+  },
+  {
+    id: "lab-booking",
+    title: "Lab Booking Portal (Microfrontend Architecture)",
+    description: "Module Federation system serving 10K+ monthly bookings.",
+    longDescription:
+      "Built scalable B2B lab booking platform using Module Federation microfrontend architecture. Independent deployment of booking, lab discovery, and vendor management modules. React Query for server-state management with localization-driven component rendering.",
+    problem:
+      "Monolithic frontend blocked independent vendor deployments. Sharing React Query cache across teams needed clear boundaries. Booking experience required different flows per locale.",
+    results:
+      "Module Federation allowed independent deploys for each vendor. 75% faster booking experience with optimistic UI. 10K+ monthly bookings. Teams ship independently without coordination.",
+    tech: ["React", "Module Federation", "React Query", "TypeScript"],
+    tags: ["Architecture", "Microfrontend", "Scale"],
+    color: "primary",
+    emoji: "🏥",
+    live: "",
+    github: "",
+  },
+  {
+    id: "call-pulse",
+    title: "Call Pulse — AI Analytics Platform",
+    description: "Processes 5K-8K call recordings daily with 97% accuracy.",
+    longDescription:
+      "AI-powered call analytics platform processing 5K-8K recordings daily. Custom pipeline splits long audio files into contextual chunks, generates transcriptions, sentiment analysis, and business insights using LLM inference. React + Express frontend/backend.",
+    problem:
+      "Raw call recordings 30+ minutes long. LLM inference on full audio expensive and slow. Needed accurate chunking that preserves conversation context.",
+    results:
+      "97% accuracy on transcription + sentiment. Optimized inference costs through smart chunking. Real-time insights dashboard serving analytics to ops teams.",
+    tech: ["React", "Express", "Python", "LLM APIs", "Audio Processing"],
+    tags: ["AI/ML", "Full Stack", "Analytics"],
+    color: "gold",
+    emoji: "🎙️",
     live: "",
     github: "",
   },

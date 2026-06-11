@@ -13,10 +13,10 @@ const fadeUp = {
 };
 
 const highlights = [
-  { icon: Code2, label: "React Specialist", desc: "Building enterprise-scale UIs" },
-  { icon: MapPin, label: "Based in Pune", desc: "The city is so pretty" },
-  { icon: Heart, label: "Design-first", desc: "Pixel perfection matters" },
-  { icon: Coffee, label: "Coffee Addict", desc: "3 cups minimum per day" },
+  { icon: Code2, label: "System Design", desc: "Zustand, Module Federation, Schema-driven" },
+  { icon: MapPin, label: "Pune-based", desc: "Remote-first, timezone flexible" },
+  { icon: Heart, label: "Mentorship", desc: "Growing juniors, raising quality bars" },
+  { icon: Coffee, label: "Shipping Culture", desc: "Fast iterations + maintainability" },
 ];
 
 export default function About() {
@@ -54,20 +54,16 @@ export default function About() {
 
             <div className="space-y-4 text-foreground-muted leading-relaxed text-sm md:text-base">
               <p>
-                I'm a Frontend Developer with <strong className="text-foreground">3+ years of experience</strong> crafting
-                high-performance web applications for corporate and startup environments alike.
-                Currently based in Pune — the city that taught me to move fast without breaking things.
+                👋 I'm a Frontend Engineer with <strong className="text-foreground">3+ years of experience</strong> building modern web applications using <strong className="text-primary">React, Next.js, TypeScript</strong>, and scalable frontend architectures.
               </p>
               <p>
-                I specialize in <strong className="text-primary">React</strong>,{" "}<strong className="text-primary">Next.js</strong>,{" "}
-                <strong className="text-primary">Javascript</strong>, and building scalable design
-                systems that teams actually love using. I believe great frontend is the invisible
-                bridge between product intent and user delight.
+                🚀 I enjoy turning <strong className="text-foreground">complex problems into intuitive user experiences</strong> while keeping performance, maintainability, and developer experience at the forefront.
               </p>
               <p>
-                What excites me most? Solving complex UX challenges with elegant code, optimizing
-                Web Vitals until the numbers look beautiful, and collaborating with designers who
-                are just as obsessed with details as I am.
+                💡 Beyond coding, I love <strong className="text-foreground">collaborating with teams, mentoring developers</strong>, and constantly learning new technologies.
+              </p>
+              <p>
+                ☕ When I'm not optimizing interfaces or refining architecture, you'll probably find me with a cup of coffee, exploring new ideas, or geeking out over great product design. In my free time, I love reading technical stuff and <strong className="text-foreground">writing articles about what I've learned</strong>.
               </p>
             </div>
 

@@ -165,7 +165,7 @@ export default function Blog() {
             {/* Footer */}
             <footer className="border-t border-border py-8">
                 <div className="container-max px-4 sm:px-6 lg:px-8 text-center text-sm text-foreground-muted">
-                    Made by Adarsh with ❤️ and way too much coffee
+                    Made by Adarsh with ❤️ 
                 </div>
             </footer>
         </div>

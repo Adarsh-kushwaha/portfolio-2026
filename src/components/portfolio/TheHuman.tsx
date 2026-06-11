@@ -44,12 +44,12 @@ const hobbies = [
 ];
 
 const funFacts = [
-  "I say I’m not hungry and then finish everyone’s food.",
-  "I overthink one text to my crush and send ‘ok’.",
-  "I dream big at night and hit snooze in the morning.",
-  "I plan my life on Monday and mess it up by Tuesday.",
-  "I act calm in public but panic quietly inside.",
-  "I do dumb things sometimes and call it ‘learning’.",
+  "I’ve rewritten the same function five times just to name it better.",
+  "`typeof null === ‘object’` broke my brain at 2 AM once.",
+  "I use `console.log` more than any framework feature.",
+  "I cross my death calendar days off on weekends.",
+  "Cooking is my love language.",
+  "I don’t chase perfection—except in UI alignment. Then it becomes personal. 🎯",
 ];
 
 export default function TheHuman() {
