@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Vitest runs in a jsdom environment with jest-dom matchers available; `npm run test` passes
 - [ ] A smoke test renders the home page and finds the Hero heading and the Blog link
