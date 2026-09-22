@@ -4,7 +4,7 @@
 
 **Blocked by:** 06
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] The Stats show six values with a real spread; the Weaknesses are the two lowest (Testing, Backend)
 - [ ] All 30 skills appear, each as either Arsenal or Tools, with its level badge

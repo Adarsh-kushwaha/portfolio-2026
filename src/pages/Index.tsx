@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/portfolio/Navbar";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
-import Skills from "@/components/portfolio/Skills";
+import Arena from "@/components/portfolio/arena/Arena";
 import Campaign from "@/components/portfolio/campaign/Campaign";
 import TheHuman from "@/components/portfolio/TheHuman";
 import Contact from "@/components/portfolio/Contact";
@@ -62,7 +62,7 @@ function HomePage() {
       <main>
         <Hero />
         <About />
-        <Skills />
+        <Arena />
         <Campaign />
         <TheHuman />
         <Contact />
