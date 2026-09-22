@@ -86,7 +86,7 @@ export default function Contact() {
     "w-full px-4 py-3 rounded-xl bg-surface border border-border focus:border-primary focus:ring-1 focus:ring-primary/30 outline-none text-sm text-foreground placeholder:text-foreground-muted transition-all duration-200 font-body";
 
   return (
-    <section id="connect" className="section-padding" ref={ref}>
+    <section id="letterbox" className="section-padding" ref={ref}>
       <div className="container-max">
         {/* Header */}
         <motion.div
@@ -245,39 +245,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Currently consuming */}
-            <div>
-              <h3 className="text-base font-heading font-700 text-foreground mb-4">Currently…</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
-                  <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="w-4 h-4 text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Reading</p>
-                    <p className="text-sm text-foreground">"Crime And Punishment" - Fyodor Dostoevsky</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
-                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Music2 className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Listening</p>
-                    <p className="text-sm text-foreground">Take My True Love By The Hand  - The Limeliters</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 glass-card rounded-xl border border-border">
-                  <div className="w-9 h-9 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-gold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-foreground-muted uppercase tracking-wide font-600">Based in</p>
-                    <p className="text-sm text-foreground">Pune, Maharashtra, India 🇮🇳</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

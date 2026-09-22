@@ -8,7 +8,7 @@ import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
 import Arena from "@/components/portfolio/arena/Arena";
 import Campaign from "@/components/portfolio/campaign/Campaign";
-import TheHuman from "@/components/portfolio/TheHuman";
+import Beyond from "@/components/portfolio/beyond/Beyond";
 import Contact from "@/components/portfolio/Contact";
 import { RenderModeProvider, useRenderMode } from "@/lib/render-mode";
 import { ThreeProvider } from "@/lib/three-loader";
@@ -64,7 +64,7 @@ function HomePage() {
         <About />
         <Arena />
         <Campaign />
-        <TheHuman />
+        <Beyond />
         <Contact />
         {/* Footer */}
         <footer className="border-t border-border py-8">
