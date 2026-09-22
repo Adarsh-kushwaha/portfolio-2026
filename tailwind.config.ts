@@ -30,6 +30,13 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
           glow: "hsl(var(--primary-glow))",
         },
+        // 3D scenes keep fixed dark lighting in both themes, so their frame is theme-independent.
+        scene: {
+          DEFAULT: "hsl(214 60% 6%)",
+          edge: "hsl(214 40% 18%)",
+          text: "hsl(210 30% 95%)",
+          muted: "hsl(210 20% 65%)",
+        },
         gold: {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",

@@ -4,7 +4,7 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Hero shows "SDE II · Frontend Systems · Pune", "📍 Pune · 🕐 local time", the metric subtitle, the ☕ tag, both call-to-action buttons and 5 social links; there is **no** "Open for opportunities" badge
 - [ ] The poster WebP is visible on first paint; no loader blocks the page

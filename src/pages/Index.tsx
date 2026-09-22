@@ -11,11 +11,24 @@ import Journey from "@/components/portfolio/Journey";
 import Work from "@/components/portfolio/Work";
 import TheHuman from "@/components/portfolio/TheHuman";
 import Contact from "@/components/portfolio/Contact";
+import { RenderModeProvider, useRenderMode } from "@/lib/render-mode";
+import { ThreeProvider } from "@/lib/three-loader";
 
 
 type Theme = "dark" | "light";
 
 export default function Index() {
+  return (
+    <RenderModeProvider>
+      <ThreeProvider>
+        <HomePage />
+      </ThreeProvider>
+    </RenderModeProvider>
+  );
+}
+
+function HomePage() {
+  const renderMode = useRenderMode();
   const [theme, setTheme] = useState<Theme>("dark");
 
   // Persist theme preference
@@ -39,7 +52,7 @@ export default function Index() {
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background text-foreground" data-render-mode={renderMode}>
       {/* SEO meta rendered in index.html — update title/description there */}
 
       <Navbar theme={theme} toggleTheme={toggleTheme} />
