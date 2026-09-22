@@ -4,7 +4,7 @@
 
 **Blocked by:** 04, 06
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] The total pin length is about 4 screens or less; the level bar jumps to any Level or to the Fortress
 - [ ] The Side Quest branch shows Call Pulse off the main path

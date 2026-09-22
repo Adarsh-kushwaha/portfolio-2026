@@ -1,7 +1,8 @@
 /**
  * Campaign — the career as a path of Levels (roles, oldest → newest). Each Level raises the
  * Towers (projects) built in it; early roles hold an Outpost. Call Pulse is a Side Quest,
- * and the path ends at the Fortress. This is the 2D / mobile layout.
+ * and the path ends at the Fortress. Desktop 3D walks the path on a 3D stage; mobile and
+ * 2D visitors get the vertical timeline.
  */
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -9,6 +10,9 @@ import { Flag } from "lucide-react";
 import { levels, sideQuests, towers, towersForLevel, type Level, type Tower } from "@/content/campaign";
 import { TowerCard } from "./TowerCard";
 import { TowerDialog } from "./TowerDialog";
+import { CampaignStage } from "./CampaignStage";
+import { useRenderMode } from "@/lib/render-mode";
+import { useMedia } from "@/lib/use-media";
 
 function Stamp({ current }: { current: boolean }) {
   return (
@@ -95,8 +99,65 @@ function LevelNode({ level, onOpen }: { level: Level; onOpen: (t: Tower) => void
   );
 }
 
+function Timeline({ onOpen }: { onOpen: (t: Tower) => void }) {
+  return (
+    <>
+      <ol
+        aria-label="Levels"
+        className="relative mt-12 space-y-10 before:absolute before:left-[17px] md:before:left-[25px] before:top-2 before:bottom-2 before:w-px before:bg-gradient-to-b before:from-gold/60 before:via-primary/60 before:to-primary"
+      >
+        {levels.map((level) => (
+          <LevelNode key={level.id} level={level} onOpen={onOpen} />
+        ))}
+      </ol>
+
+      <section aria-labelledby="side-quest-title" className="mt-12 rounded-3xl border border-dashed border-gold/40 p-6">
+        <p className="text-xs uppercase tracking-widest text-gold font-600">Off the main path</p>
+        <h3 id="side-quest-title" className="mt-1 text-xl font-heading font-700 text-foreground">
+          Side Quest
+        </h3>
+        <p className="mt-1 text-sm text-foreground-muted">Built outside the roles above.</p>
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {sideQuests.map((t) => (
+            <TowerCard key={t.id} tower={t} onOpen={onOpen} />
+          ))}
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="fortress-title"
+        className="mt-12 rounded-3xl border border-primary/30 bg-primary/5 p-6 md:p-8"
+      >
+        <h3 id="fortress-title" className="text-2xl font-heading font-700 text-foreground">
+          🏰 The Fortress
+        </h3>
+        <p className="mt-1 text-sm text-foreground-muted">Everything built along the way, together.</p>
+        <ul className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-3">
+          {towers.map((t) => (
+            <li key={t.id}>
+              <a
+                href={`#tower-${t.id}`}
+                className="block rounded-xl border border-border bg-background/60 p-3 hover:border-primary/60 transition-colors"
+              >
+                <span className="block text-xs text-foreground-muted truncate">
+                  <span aria-hidden>{t.emoji} </span>
+                  {t.title}
+                </span>
+                <span className="block mt-1 text-sm font-heading font-700 text-gold">{t.banner}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
+  );
+}
+
 export default function Campaign() {
   const [openTower, setOpenTower] = useState<Tower | null>(null);
+  const mode = useRenderMode();
+  const wide = useMedia("(min-width: 1024px)");
+  const stage = mode === "3d" && wide;
 
   return (
     <section id="campaign" aria-labelledby="campaign-title" className="section-padding">
@@ -109,47 +170,7 @@ export default function Campaign() {
           Six roles, oldest to newest. The projects built in each one rise as Towers along the way.
         </p>
 
-        <ol aria-label="Levels" className="relative mt-12 space-y-10 before:absolute before:left-[17px] md:before:left-[25px] before:top-2 before:bottom-2 before:w-px before:bg-gradient-to-b before:from-gold/60 before:via-primary/60 before:to-primary">
-          {levels.map((level) => (
-            <LevelNode key={level.id} level={level} onOpen={setOpenTower} />
-          ))}
-        </ol>
-
-        <section aria-labelledby="side-quest-title" className="mt-12 rounded-3xl border border-dashed border-gold/40 p-6">
-          <p className="text-xs uppercase tracking-widest text-gold font-600">Off the main path</p>
-          <h3 id="side-quest-title" className="mt-1 text-xl font-heading font-700 text-foreground">
-            Side Quest
-          </h3>
-          <p className="mt-1 text-sm text-foreground-muted">Built outside the roles above.</p>
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {sideQuests.map((t) => (
-              <TowerCard key={t.id} tower={t} onOpen={setOpenTower} />
-            ))}
-          </div>
-        </section>
-
-        <section aria-labelledby="fortress-title" className="mt-12 rounded-3xl border border-primary/30 bg-primary/5 p-6 md:p-8">
-          <h3 id="fortress-title" className="text-2xl font-heading font-700 text-foreground">
-            🏰 The Fortress
-          </h3>
-          <p className="mt-1 text-sm text-foreground-muted">Everything built along the way, together.</p>
-          <ul className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-3">
-            {towers.map((t) => (
-              <li key={t.id}>
-                <a
-                  href={`#tower-${t.id}`}
-                  className="block rounded-xl border border-border bg-background/60 p-3 hover:border-primary/60 transition-colors"
-                >
-                  <span className="block text-xs text-foreground-muted truncate">
-                    <span aria-hidden>{t.emoji} </span>
-                    {t.title}
-                  </span>
-                  <span className="block mt-1 text-sm font-heading font-700 text-gold">{t.banner}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {stage ? <CampaignStage onOpen={setOpenTower} /> : <Timeline onOpen={setOpenTower} />}
       </div>
 
       <TowerDialog tower={openTower} onClose={() => setOpenTower(null)} />

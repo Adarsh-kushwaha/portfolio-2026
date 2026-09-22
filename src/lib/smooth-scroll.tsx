@@ -20,6 +20,12 @@ export function scrollToSection(target: string) {
   else el.scrollIntoView({ behavior: "smooth" });
 }
 
+/** Scrolls to an absolute page offset. */
+export function scrollToY(y: number) {
+  if (lenis) lenis.scrollTo(y);
+  else window.scrollTo({ top: y, behavior: "smooth" });
+}
+
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const mode = useRenderMode();
 

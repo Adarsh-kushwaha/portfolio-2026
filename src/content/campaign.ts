@@ -266,3 +266,21 @@ export const sideQuests = towers.filter((t) => t.levelId === "side-quest");
 export const levelOf = (tower: Tower) => levels.find((l) => l.id === tower.levelId);
 export const towerById = (id: string) => towers.find((t) => t.id === id);
 export const towerAnchor = (id: string) => `tower-${id}`;
+
+/** The stops along the Campaign path: every Level, then the Side Quest, then the Fortress. */
+export type CampaignStop =
+  | { kind: "level"; level: Level; towers: Tower[] }
+  | { kind: "side-quest"; towers: Tower[] }
+  | { kind: "fortress"; towers: Tower[] };
+
+export const campaignStops: CampaignStop[] = [
+  ...levels.map((level): CampaignStop => ({ kind: "level", level, towers: towersForLevel(level.id) })),
+  { kind: "side-quest", towers: sideQuests },
+  { kind: "fortress", towers },
+];
+
+/** Index of the stop where a Tower stands. */
+export const stopOfTower = (tower: Tower) =>
+  tower.levelId === "side-quest"
+    ? campaignStops.findIndex((s) => s.kind === "side-quest")
+    : campaignStops.findIndex((s) => s.kind === "level" && s.level.id === tower.levelId);

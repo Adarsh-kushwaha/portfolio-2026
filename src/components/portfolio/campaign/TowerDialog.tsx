@@ -36,15 +36,21 @@ export function TowerDialog({ tower, onClose }: TowerDialogProps) {
                 <X className="w-4 h-4" />
               </Dialog.Close>
             </div>
-            <Dialog.Description className="mt-3 text-foreground-muted leading-relaxed">{tower.context}</Dialog.Description>
+            <Dialog.Description className="mt-3 text-foreground-muted leading-relaxed">
+              {tower.context}
+            </Dialog.Description>
 
             <dl className="mt-6 space-y-5">
               <div>
-                <dt className="text-xs uppercase tracking-widest text-foreground-muted font-600">Problem & trade-offs</dt>
+                <dt className="text-xs uppercase tracking-widest text-foreground-muted font-600">
+                  Problem & trade-offs
+                </dt>
                 <dd className="mt-1 text-sm text-foreground leading-relaxed">{tower.problem}</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-widest text-foreground-muted font-600">Architecture decision</dt>
+                <dt className="text-xs uppercase tracking-widest text-foreground-muted font-600">
+                  Architecture decision
+                </dt>
                 <dd className="mt-1 text-sm text-foreground leading-relaxed">{tower.decision}</dd>
               </div>
               <div>
@@ -55,7 +61,10 @@ export function TowerDialog({ tower, onClose }: TowerDialogProps) {
 
             <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2" aria-label="Metrics">
               {tower.metrics.map((m) => (
-                <li key={m} className="rounded-xl border border-primary/30 bg-primary/5 px-3 py-2 text-sm font-heading font-600 text-primary">
+                <li
+                  key={m}
+                  className="rounded-xl border border-primary/30 bg-primary/5 px-3 py-2 text-sm font-heading font-600 text-primary"
+                >
                   {m}
                 </li>
               ))}

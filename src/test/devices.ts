@@ -11,3 +11,14 @@ export function restoreDevice() {
   vi.restoreAllMocks();
   Reflect.deleteProperty(navigator, "connection");
 }
+
+/** A wide screen (desktop layouts). Stubs matchMedia so min-width queries match. */
+export function stubDesktop() {
+  const original = window.matchMedia;
+  vi.spyOn(window, "matchMedia").mockImplementation((query: string) => {
+    if (query.includes("min-width")) {
+      return { matches: true, media: query, addEventListener() {}, removeEventListener() {} } as unknown as MediaQueryList;
+    }
+    return original(query);
+  });
+}
