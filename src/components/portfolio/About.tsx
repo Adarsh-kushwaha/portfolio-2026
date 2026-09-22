@@ -1,135 +1,116 @@
 /**
- * About Section — Two-column: professional story (left) + personal side (right)
+ * About — the Engineer Behind the Pixels (intro card) and the Human Behind the Screen
+ * (who Adarsh is right now). Hobbies and values live in Beyond the Code.
  */
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code2, Heart, MapPin, Coffee } from "lucide-react";
-import casualImg from "@/assets/adarsh-casual.png";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-};
+import { motion, useInView } from "framer-motion";
+import { Code2, Heart, MapPin, Rocket } from "lucide-react";
+import portraitImg from "@/assets/adarsh-portrait.webp";
+import casualImg from "@/assets/adarsh-casual.webp";
+import { profile } from "@/content/profile";
+import { TiltFrame } from "./TiltFrame";
 
 const highlights = [
-  { icon: Code2, label: "System Design", desc: "Zustand, Module Federation, Schema-driven" },
+  { icon: Code2, label: "System Design", desc: "Zustand, Module Federation, schema-driven" },
   { icon: MapPin, label: "Pune-based", desc: "Remote-first, timezone flexible" },
   { icon: Heart, label: "Mentorship", desc: "Growing juniors, raising quality bars" },
-  { icon: Coffee, label: "Shipping Culture", desc: "Fast iterations + maintainability" },
+  { icon: Rocket, label: "Shipping Culture", desc: "Fast iterations + maintainability" },
 ];
+
+const fadeUp = { initial: { opacity: 0, y: 32 }, animate: { opacity: 1, y: 0 } };
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const state = inView ? "animate" : "initial";
 
   return (
-    <section id="about" className="section-padding" ref={ref}>
-      <div className="container-max">
-        {/* Section label */}
-        <motion.div
+    <section id="about" aria-labelledby="about-engineer" className="section-padding" ref={ref}>
+      <div className="container-max space-y-10">
+        <span className="section-label">About</span>
+
+        {/* The Engineer Behind the Pixels */}
+        <motion.article
           initial="initial"
-          animate={isInView ? "animate" : "initial"}
+          animate={state}
           variants={fadeUp}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-4 mb-12"
+          transition={{ duration: 0.6 }}
+          className="glass-card rounded-3xl border border-border p-6 md:p-10 grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] gap-8 items-center"
         >
-          <span className="section-label">About Me</span>
-          <div className="flex-1 h-px bg-gradient-to-r from-primary/50 to-transparent" />
-        </motion.div>
+          <TiltFrame className="rounded-2xl overflow-hidden border border-border aspect-[4/3.4]">
+            <img
+              src={portraitImg}
+              alt="Portrait of Adarsh Kushwaha"
+              className="h-full w-full object-cover object-top"
+              loading="lazy"
+              width={720}
+              height={613}
+            />
+          </TiltFrame>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left: Professional Story */}
-          <motion.div
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            variants={fadeUp}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-700 tracking-tight leading-tight">
-              The Engineer{" "}
-              <span className="text-gradient-teal">Behind the Pixels</span>
+          <div className="space-y-5">
+            <h2 id="about-engineer" className="text-3xl md:text-4xl font-heading font-700 tracking-tight leading-tight">
+              The Engineer <span className="text-gradient-teal">Behind the Pixels</span>
             </h2>
-
-            <div className="space-y-4 text-foreground-muted leading-relaxed text-sm md:text-base">
-              <p>
-                👋 I'm a Frontend Engineer with <strong className="text-foreground">3+ years of experience</strong> building modern web applications using <strong className="text-primary">React, Next.js, TypeScript</strong>, and scalable frontend architectures.
-              </p>
-              <p>
-                🚀 I enjoy turning <strong className="text-foreground">complex problems into intuitive user experiences</strong> while keeping performance, maintainability, and developer experience at the forefront.
-              </p>
-              <p>
-                💡 Beyond coding, I love <strong className="text-foreground">collaborating with teams, mentoring developers</strong>, and constantly learning new technologies.
-              </p>
-              <p>
-                ☕ When I'm not optimizing interfaces or refining architecture, you'll probably find me with a cup of coffee, exploring new ideas, or geeking out over great product design. In my free time, I love reading technical stuff and <strong className="text-foreground">writing articles about what I've learned</strong>.
-              </p>
-            </div>
-
-            {/* Highlight cards */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <p className="text-foreground-muted leading-relaxed">
+              I architect frontend systems at <strong className="text-foreground">Bajaj Finserv Health</strong> with{" "}
+              <strong className="text-primary">React, Next.js and TypeScript</strong>: state that scales, forms driven by
+              schema, and bundles that load fast on a 3G phone.
+            </p>
+            <p className="text-foreground-muted leading-relaxed">
+              I care about the <strong className="text-foreground">trade-offs behind every choice</strong>, and about
+              the engineers around me: I review, mentor, and raise the bar.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               {highlights.map(({ icon: Icon, label, desc }) => (
-                <motion.div
-                  key={label}
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  className="glass-card rounded-xl p-4 border border-border hover:border-primary/50 transition-all duration-300 cursor-default"
-                >
-                  <Icon className="w-5 h-5 text-primary mb-2" />
+                <li key={label} className="rounded-xl border border-border p-4 hover:border-primary/50 transition-colors">
+                  <Icon className="w-5 h-5 text-primary mb-2" aria-hidden />
                   <p className="text-sm font-heading font-600 text-foreground">{label}</p>
                   <p className="text-xs text-foreground-muted mt-0.5">{desc}</p>
-                </motion.div>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
+        </motion.article>
 
-          {/* Right: Personal Side */}
-          <motion.div
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            variants={fadeUp}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-700 tracking-tight leading-tight">
-              The Human{" "}
-              <span className="text-gradient-gold">Behind the Screen</span>
+        {/* The Human Behind the Screen */}
+        <motion.article
+          initial="initial"
+          animate={state}
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          aria-labelledby="about-human"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+        >
+          <div className="space-y-5 md:order-last">
+            <h2 id="about-human" className="text-3xl md:text-4xl font-heading font-700 tracking-tight leading-tight">
+              The Human <span className="text-gradient-gold">Behind the Screen</span>
             </h2>
-
-            {/* Casual photo */}
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-              <img
-                src={casualImg}
-                alt="Adarsh at a Mumbai cafe"
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-xs text-foreground/80 font-body italic">
-                  📍 My second office — my home with good filter coffee and fast WiFi
-                </p>
-              </div>
+            <p className="text-foreground-muted leading-relaxed">
+              Beyond the editor, I'm a curious generalist living in Pune. The calm pace and good weather keep me
+              balanced, and I do my best thinking with a hot cup of filter coffee.
+            </p>
+            <div className="rounded-2xl border border-gold/30 bg-gold/5 p-5">
+              <p className="text-xs uppercase tracking-widest text-gold font-600 mb-2">What I'm working on</p>
+              <p className="text-foreground leading-relaxed">{profile.workingOn}</p>
             </div>
+          </div>
 
-            <div className="space-y-4 text-foreground-muted leading-relaxed text-sm md:text-base">
-              <p>
-                Beyond the editor, I'm a <strong className="text-foreground">curious generalist</strong> who enjoys
-                unwinding with good films, getting lost in books, and experimenting in the kitchen after a long day in Pune.
-              </p>
-              <p>
-                Living in Pune keeps me balanced — the calm pace, great weather, and weekend getaways offer the perfect reset.
-                Movies and reading help me switch contexts, while cooking lets me slow down and build something tangible.
-              </p>
-              <p>
-                I value <span className="text-gold">honesty</span>,{" "}
-                <span className="text-gold">craft</span>,{" "}
-                <span className="text-gold">continuous learning</span>, and meaningful
-                collaboration where everyone leaves the room with clearer thinking than they walked in with.
-              </p>
-            </div>
-          </motion.div>
-        </div>
+          <TiltFrame className="relative rounded-2xl overflow-hidden border border-border aspect-[3/2]">
+            <img
+              src={casualImg}
+              alt="Adarsh at home, his second office"
+              className="h-full w-full object-cover"
+              loading="lazy"
+              width={960}
+              height={640}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+            <p className="absolute bottom-4 left-4 right-4 text-xs text-foreground/85 italic">
+              📍 My second office: home, good filter coffee and fast WiFi
+            </p>
+          </TiltFrame>
+        </motion.article>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Portrait and casual photos are served as WebP/AVIF (total about 300 KB, down from 2.3 MB)
 - [ ] Cards tilt with the mouse on desktop and stack flat on mobile
