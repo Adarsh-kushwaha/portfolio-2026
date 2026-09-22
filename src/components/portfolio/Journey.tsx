@@ -6,102 +6,19 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Briefcase, TrendingUp, Users, Zap } from "lucide-react";
 
-interface Role {
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  type: string;
-  current?: boolean;
-  achievements: string[];
-  tech: string[];
-}
+import { levels } from "@/content/campaign";
 
-const roles: Role[] = [
-  {
-    title: "SDE II – Frontend",
-    company: "Bajaj Finserv Health",
-    location: "Pune, IN",
-    period: "Nov 2024 — Present",
-    type: "Full-time",
-    current: true,
-    achievements: [
-      "Architected Campaign Management System handling 1.25L+ API calls/month across 15+ live campaigns using Zustand + virtualized tables for 100K+ records",
-      "Built schema-driven form framework supporting 200+ dynamic variants across 10+ vendors, processing 20K+ daily claim submissions",
-      "Designed Real-Time Analytics Dashboard with GraphQL optimization, reducing API requests by 25% while maintaining real-time KPI freshness",
-      "Led performance optimization: reduced JS bundle 76% (2.5MB → 600KB), improved LCP 5.3s → 1.2s, Lighthouse 60 → 95, crash-free rate 96% → 99.3%",
-      "Mentored junior developers on code quality & Git workflows, reducing team-wide bug density by 40%",
-    ],
-    tech: ["Next.js", "React", "TypeScript", "Zustand", "React Query", "GraphQL"],
-  },
-  {
-    title: "SDE I – Frontend",
-    company: "Bajaj Finserv Health",
-    location: "Pune, IN",
-    period: "Jan 2023 — Oct 2024",
-    type: "Full-time",
-    achievements: [
-      "Built scalable Lab Booking Portal using Module Federation microfrontend architecture, supporting 10K+ monthly bookings with 75% faster experience",
-      "Implemented React Query-based server-state management with optimistic UI updates and localization-driven component rendering",
-      "Strengthened portal security by implementing CSP, input sanitization, secure cookies, maintaining 0 critical findings in production",
-      "Led vendor frontend portal takeover with codebase analysis and CI/CD setup, enabling independent delivery within 2 weeks",
-    ],
-    tech: ["React", "Next.js", "TypeScript", "React Query", "Module Federation", "Tailwind CSS"],
-  },
-  {
-    title: "Frontend Developer Intern",
-    company: "Bajaj Finserv Health",
-    location: "Pune, IN",
-    period: "Jan 2023 — Jun 2023",
-    type: "Internship",
-    achievements: [
-      "Reduced payment and invoice screen load time from ~2s to ~500ms using code splitting, lazy loading, and component restructuring",
-      "Integrated a scan-and-pay UI module into the payment flow, improving checkout speed and reliability for high-volume usage",
-      "Refactored UI components into reusable hooks and layouts, improving maintainability and development velocity",
-      "Contributed to a large-scale UI revamp by standardizing colors, typography, and theming without disrupting production",
-    ],
-    tech: ["React", "JavaScript", "HTML", "CSS"],
-  },
-  {
-    title: "Frontend Developer Intern",
-    company: "Coding Sheep Technologies LLP",
-    location: "Remote, IN",
-    period: "Oct 2022 — Dec 2022",
-    type: "Internship",
-    achievements: [
-      "Delivered responsive UI screens from Figma designs with consistent cross-browser behavior",
-      "Built reusable UI components to accelerate feature delivery across multiple client projects",
-      "Collaborated with backend developers to integrate APIs and improve end-to-end user flows",
-    ],
-    tech: ["HTML", "CSS", "JavaScript", "React", "Figma"],
-  },
-  {
-    title: "WordPress Web Developer",
-    company: "MiBi Services",
-    location: "India",
-    period: "Aug 2020 — Oct 2020",
-    type: "Contract",
-    achievements: [
-      "Built an MVP job portal website using WordPress with custom HTML and CSS for faster time-to-market",
-      "Implemented responsive UI layouts to support mobile and low-bandwidth users",
-      "Worked with CMS data models and plugins to structure content and basic workflows",
-    ],
-    tech: ["WordPress", "HTML", "CSS", "JavaScript"],
-  },
-  {
-    title: "Co-Founder & Frontend Engineer",
-    company: "Verstile",
-    location: "India",
-    period: "Jul 2020 — Sep 2021",
-    type: "Startup",
-    achievements: [
-      "Co-founded a web agency and delivered 10+ websites for education institutes during COVID",
-      "Built reusable UI templates to speed up delivery across multiple client projects",
-      "Handled client requirements, UI delivery, and performance optimization end-to-end",
-    ],
-    tech: ["HTML", "CSS", "JavaScript", "WordPress"],
-  },
-];
+// Newest first, as the timeline has always shown it.
+const roles = [...levels].reverse().map((l) => ({
+  title: l.title,
+  company: l.company,
+  location: l.location,
+  period: l.period,
+  type: l.type,
+  current: l.end === null,
+  achievements: l.wins,
+  tech: l.tech,
+}));
 
 export default function Journey() {
   const ref = useRef(null);

@@ -8,3 +8,11 @@ describe("home page", () => {
     expect(screen.getAllByRole("button", { name: /blog/i }).length).toBeGreaterThan(0);
   });
 });
+
+describe("career levels", () => {
+  it("shows SDE I starting after the internship ends", () => {
+    renderHome();
+    expect(screen.getByText("Jul 2023 — Oct 2024")).toBeInTheDocument();
+    expect(screen.queryByText("Jan 2023 — Oct 2024")).not.toBeInTheDocument();
+  });
+});

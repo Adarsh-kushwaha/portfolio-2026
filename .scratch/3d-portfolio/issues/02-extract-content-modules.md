@@ -4,7 +4,7 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Every Level (6 roles) has its Towers or Outposts attached. Call Pulse is a Side Quest Tower
 - [ ] The SDE I period is corrected so it no longer overlaps the internship (assumed Jul 2023 ⚠️ owner to confirm)
