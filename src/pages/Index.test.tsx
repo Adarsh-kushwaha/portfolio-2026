@@ -12,7 +12,7 @@ describe("home page", () => {
 describe("career levels", () => {
   it("shows SDE I starting after the internship ends", () => {
     renderHome();
-    expect(screen.getByText("Jul 2023 — Oct 2024")).toBeInTheDocument();
-    expect(screen.queryByText("Jan 2023 — Oct 2024")).not.toBeInTheDocument();
+    expect(screen.getByText(/Jul 2023 — Oct 2024/)).toBeInTheDocument();
+    expect(screen.queryByText(/Jan 2023 — Oct 2024/)).not.toBeInTheDocument();
   });
 });

@@ -7,8 +7,7 @@ import Navbar from "@/components/portfolio/Navbar";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
 import Skills from "@/components/portfolio/Skills";
-import Journey from "@/components/portfolio/Journey";
-import Work from "@/components/portfolio/Work";
+import Campaign from "@/components/portfolio/campaign/Campaign";
 import TheHuman from "@/components/portfolio/TheHuman";
 import Contact from "@/components/portfolio/Contact";
 import { RenderModeProvider, useRenderMode } from "@/lib/render-mode";
@@ -64,8 +63,7 @@ function HomePage() {
         <Hero />
         <About />
         <Skills />
-        <Journey />
-        <Work />
+        <Campaign />
         <TheHuman />
         <Contact />
         {/* Footer */}

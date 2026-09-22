@@ -4,7 +4,7 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] 6 Levels in order: Verstile → MiBi → Coding Sheep → BFH Intern → SDE I → SDE II; the periods don't overlap
 - [ ] Each Tower's detail shows context, the architecture decision, trade-offs, all metrics and the stack
