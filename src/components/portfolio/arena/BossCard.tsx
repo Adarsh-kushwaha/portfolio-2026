@@ -27,11 +27,11 @@ export function BossCard({ boss, defeated, active, onFight }: BossCardProps) {
         active ? "border-primary shadow-teal" : "border-border hover:border-gold/50",
       )}
     >
-      <div className="flex items-center justify-between gap-3">
+      <div>
+        <span className="text-[11px] uppercase tracking-widest text-foreground-muted">{boss.headline}</span>
         <h4 id={titleId} className="font-heading font-700 text-foreground">
           {boss.name}
         </h4>
-        <span className="text-[11px] uppercase tracking-widest text-foreground-muted">{boss.headline}</span>
       </div>
 
       <div

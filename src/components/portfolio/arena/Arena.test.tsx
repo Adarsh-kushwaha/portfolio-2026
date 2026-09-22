@@ -68,6 +68,18 @@ describe("Arena", () => {
     expect(card.getByText(/lighthouse uppercut/i)).toBeInTheDocument();
   });
 
+  it("announces the Move landing on the Boss", async () => {
+    const user = userEvent.setup();
+    renderHome();
+    await user.click(arena().getByRole("button", { name: /fight bundle bloat/i }));
+    expect(arena().getByRole("status")).toHaveTextContent("Code-Split Slash hits Bundle Bloat: 2.5 MB → 600 KB");
+  });
+
+  it("puts the fighter on stage with the name plate", () => {
+    renderHome();
+    expect(arena().getByRole("img", { name: /avatar in a fight stance facing a boss/i })).toBeInTheDocument();
+  });
+
   it("replaces the old Skills section", () => {
     renderHome();
     expect(document.getElementById("skills")).toBeNull();

@@ -6,6 +6,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { bosses, skills, stats, strengths, weaknesses, type Boss, type Skill } from "@/content/arena";
 import { BossCard } from "./BossCard";
+import { SceneSlot } from "@/components/three/SceneSlot";
+
+const loadArenaScene = () => import("@/components/three/ArenaScene");
 
 const levelStyle: Record<Skill["level"], string> = {
   Expert: "border-gold/50 text-gold bg-gold/10",
@@ -23,7 +26,9 @@ function SkillItem({ skill }: { skill: Skill }) {
         <span className="block text-sm text-foreground truncate">{skill.name}</span>
         <span className="block text-[11px] text-foreground-muted">{skill.years}</span>
       </span>
-      <span className={`rounded-md border px-1.5 py-0.5 text-[10px] font-600 uppercase tracking-wide ${levelStyle[skill.level]}`}>
+      <span
+        className={`rounded-md border px-1.5 py-0.5 text-[10px] font-600 uppercase tracking-wide ${levelStyle[skill.level]}`}
+      >
         {skill.level}
       </span>
     </li>
@@ -58,8 +63,23 @@ export default function Arena() {
 
         {/* Fighter select: name plate + Stats + Strengths / Weaknesses */}
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="rounded-3xl border border-scene-edge bg-scene p-6 md:p-8 text-scene-text">
-            <p className="text-xs uppercase tracking-[0.3em] text-scene-muted">Player 1</p>
+          <div className="rounded-3xl border border-scene-edge bg-scene p-6 md:p-8 text-scene-text lg:sticky lg:top-24 self-start">
+            <SceneSlot
+              load={loadArenaScene}
+              sceneProps={{
+                fight: {
+                  round: fight.round,
+                  health: fight.boss ? fight.boss.remaining : 100,
+                },
+              }}
+              poster="/posters/arena-stage.webp"
+              posterAlt="Adarsh's Avatar in a fight stance facing a Boss"
+              className="aspect-[16/10] w-full mb-6"
+            />
+            <p role="status" className="min-h-[1.5rem] text-sm font-heading font-600 text-gold">
+              {fight.boss && `${fight.boss.move} hits ${fight.boss.name}: ${fight.boss.before} → ${fight.boss.after}`}
+            </p>
+            <p className="mt-3 text-xs uppercase tracking-[0.3em] text-scene-muted">Player 1</p>
             <p className="mt-1 text-2xl md:text-3xl font-heading font-700 tracking-tight">
               ADARSH <span className="text-gold">— The Pixel Warrior</span>
             </p>
@@ -79,7 +99,9 @@ export default function Arena() {
                     className="mt-1.5 h-2.5 rounded-full bg-white/10 overflow-hidden"
                   >
                     <motion.div
-                      className={s.value >= 80 ? "h-full bg-gradient-to-r from-primary to-gold" : "h-full bg-red-400/80"}
+                      className={
+                        s.value >= 80 ? "h-full bg-gradient-to-r from-primary to-gold" : "h-full bg-red-400/80"
+                      }
                       initial={{ width: 0 }}
                       whileInView={{ width: `${s.value}%` }}
                       viewport={{ once: true }}
@@ -116,23 +138,24 @@ export default function Arena() {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-
-        {/* Boss fights */}
-        <div className="mt-12">
-          <h3 className="text-xl font-heading font-700 text-foreground">Boss fights</h3>
-          <p className="mt-1 text-sm text-foreground-muted">Real problems, real before → after numbers. Pick one.</p>
-          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bosses.map((b) => (
-              <BossCard
-                key={b.id}
-                boss={b}
-                active={fight.boss?.id === b.id}
-                defeated={defeated.has(b.id)}
-                onFight={onFight}
-              />
-            ))}
+            {/* Boss fights, next to the stage so the fight is visible */}
+            <div>
+              <h3 className="text-xl font-heading font-700 text-foreground">Boss fights</h3>
+              <p className="mt-1 text-sm text-foreground-muted">
+                Real problems, real before → after numbers. Pick one.
+              </p>
+              <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {bosses.map((b) => (
+                  <BossCard
+                    key={b.id}
+                    boss={b}
+                    active={fight.boss?.id === b.id}
+                    defeated={defeated.has(b.id)}
+                    onFight={onFight}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

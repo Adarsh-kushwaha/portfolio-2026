@@ -4,7 +4,7 @@
 
 **Blocked by:** 03, 07
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Selecting a Boss (by click, tap or keyboard) plays the Move animation and the health-bar drain
 - [ ] The Avatar reuses the GLB already loaded for the Hero, with no second download
