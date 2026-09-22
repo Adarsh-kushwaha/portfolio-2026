@@ -5,9 +5,9 @@
  */
 import { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { useFrame, type GroupProps } from "@react-three/fiber";
 import { LoopOnce, type Group } from "three";
 import { SkeletonUtils } from "three-stdlib";
-import type { GroupProps } from "@react-three/fiber";
 
 export const AVATAR_URL = "/models/avatar.glb";
 
@@ -25,22 +25,24 @@ export type AvatarClip =
   | "Dance";
 
 /** Clips that play once and hold their last pose. */
-const ONE_SHOT: AvatarClip[] = ["Sitting", "Standing", "Punch", "Wave", "ThumbsUp", "Jump", "Yes"];
+const ONE_SHOT: AvatarClip[] = ["Punch", "Wave", "ThumbsUp", "Jump", "Yes"];
 
 interface AvatarProps extends GroupProps {
   clip: AvatarClip;
-  /** 0–1: scrub the clip by this progress instead of playing it (scroll-driven). */
-  progress?: number;
+  /** Scroll-driven blend: `clip` fades into `blendTo` as progress goes 0 → 1. */
+  blendTo?: AvatarClip;
+  progress?: { current: number };
   /** Clip to return to after a one-shot finishes. */
   then?: AvatarClip;
+  /** Changing this replays a one-shot clip. */
+  playKey?: number;
 }
 
-export function Avatar({ clip, progress, then, ...groupProps }: AvatarProps) {
+export function Avatar({ clip, blendTo, progress, then, playKey, ...groupProps }: AvatarProps) {
   const { scene, animations } = useGLTF(AVATAR_URL);
   const model = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const group = useRef<Group>(null);
   const { actions, mixer } = useAnimations(animations, group);
-  const scrubbed = progress !== undefined;
 
   useEffect(() => {
     model.traverse((o) => {
@@ -57,7 +59,8 @@ export function Avatar({ clip, progress, then, ...groupProps }: AvatarProps) {
       action.clampWhenFinished = true;
     }
     action.fadeIn(0.3).play();
-    action.paused = scrubbed;
+    const blend = blendTo ? actions[blendTo] : undefined;
+    blend?.reset().play();
 
     const onFinished = (e: { action: unknown }) => {
       if (e.action !== action || !then) return;
@@ -68,15 +71,17 @@ export function Avatar({ clip, progress, then, ...groupProps }: AvatarProps) {
     return () => {
       mixer.removeEventListener("finished", onFinished);
       action.fadeOut(0.3);
+      blend?.fadeOut(0.3);
       if (then) actions[then]?.fadeOut(0.3);
     };
-  }, [actions, mixer, clip, then, scrubbed]);
+  }, [actions, mixer, clip, blendTo, then, playKey]);
 
-  useEffect(() => {
-    const action = actions[clip];
-    if (!action || progress === undefined) return;
-    action.time = Math.min(Math.max(progress, 0), 0.999) * action.getClip().duration;
-  }, [actions, clip, progress]);
+  useFrame(() => {
+    if (!blendTo || !progress) return;
+    const p = Math.min(Math.max(progress.current, 0), 1);
+    actions[clip]?.setEffectiveWeight(1 - p);
+    actions[blendTo]?.setEffectiveWeight(p);
+  });
 
   return (
     <group ref={group} {...groupProps} dispose={null}>

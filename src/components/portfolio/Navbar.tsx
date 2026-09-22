@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon, Download } from "lucide-react";
 import { profile } from "@/content/profile";
+import { scrollToSection } from "@/lib/smooth-scroll";
 
 interface NavbarProps {
   theme: "dark" | "light";
@@ -44,8 +45,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       return;
     }
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    scrollToSection(href);
   };
 
   return (

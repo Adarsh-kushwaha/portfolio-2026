@@ -1,5 +1,6 @@
 import { screen, within } from "@testing-library/react";
 import { renderHome } from "@/test/render-home";
+import { restoreDevice, stubCapableDevice } from "@/test/devices";
 
 const hero = () => within(screen.getByRole("region", { name: /adarsh kushwaha/i }));
 
@@ -28,5 +29,20 @@ describe("Hero", () => {
     renderHome();
     expect(hero().getByText(/📍 Pune/)).toBeInTheDocument();
     expect(hero().getByText(/\d{1,2}:\d{2}\s?(AM|PM)/i)).toBeInTheDocument();
+  });
+});
+
+describe("Hero pin", () => {
+  afterEach(restoreDevice);
+
+  it("offers a Skip link past the pinned Hero in 3D", () => {
+    stubCapableDevice();
+    renderHome();
+    expect(hero().getByRole("link", { name: /skip/i })).toHaveAttribute("href", "#about");
+  });
+
+  it("does not pin (no Skip link) in 2D", () => {
+    renderHome();
+    expect(hero().queryByRole("link", { name: /skip/i })).not.toBeInTheDocument();
   });
 });

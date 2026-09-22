@@ -13,6 +13,7 @@ import TheHuman from "@/components/portfolio/TheHuman";
 import Contact from "@/components/portfolio/Contact";
 import { RenderModeProvider, useRenderMode } from "@/lib/render-mode";
 import { ThreeProvider } from "@/lib/three-loader";
+import { SmoothScrollProvider } from "@/lib/smooth-scroll";
 
 
 type Theme = "dark" | "light";
@@ -20,9 +21,11 @@ type Theme = "dark" | "light";
 export default function Index() {
   return (
     <RenderModeProvider>
-      <ThreeProvider>
-        <HomePage />
-      </ThreeProvider>
+      <SmoothScrollProvider>
+        <ThreeProvider>
+          <HomePage />
+        </ThreeProvider>
+      </SmoothScrollProvider>
     </RenderModeProvider>
   );
 }

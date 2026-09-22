@@ -4,7 +4,7 @@
 
 **Blocked by:** 03
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [ ] Scrolling the Hero plays the stand-up and turn animations tied to scroll progress
 - [ ] The Hero pin lasts about 1 screen, and "Skip ↓" jumps past it

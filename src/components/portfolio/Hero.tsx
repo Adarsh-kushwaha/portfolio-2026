@@ -2,12 +2,15 @@
  * Hero — who Adarsh is, with the metrics up front. The Avatar poster paints first;
  * the 3D desk scene fades in over it once the stage has loaded (ADR 0001).
  */
+import { useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import { profile, socials } from "@/content/profile";
 import { SceneSlot } from "@/components/three/SceneSlot";
 import { LocalTime } from "./LocalTime";
 import { SocialIcon } from "./SocialIcon";
+import { SkipLink, usePin, useProgressRef } from "./Pin";
+import { scrollToSection } from "@/lib/smooth-scroll";
 
 const item = {
   initial: { opacity: 0, y: 24 },
@@ -17,8 +20,18 @@ const item = {
 const loadHeroScene = () => import("@/components/three/HeroScene");
 
 export default function Hero() {
+  const section = useRef<HTMLElement>(null);
+  const progress = useProgressRef();
+  const onProgress = useCallback((p: number) => (progress.current = p), [progress]);
+  const pinned = usePin(section, { screens: 1, onProgress });
+
   return (
-    <section id="home" aria-labelledby="hero-name" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      ref={section}
+      id="home"
+      aria-labelledby="hero-name"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       <div className="absolute inset-0" aria-hidden>
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
         <div className="absolute top-1/3 right-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
@@ -36,6 +49,7 @@ export default function Hero() {
           >
             <SceneSlot
               load={loadHeroScene}
+              sceneProps={{ progress }}
               poster="/posters/hero-avatar.webp"
               posterAlt="Adarsh's Avatar at a desk with a laptop and a filter coffee"
               className="aspect-square w-full max-w-[22rem] sm:max-w-md lg:max-w-none mx-auto"
@@ -74,7 +88,7 @@ export default function Hero() {
                 href="#campaign"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector("#campaign")?.scrollIntoView({ behavior: "smooth" });
+                  scrollToSection("#campaign");
                 }}
                 className="px-6 py-3 rounded-xl btn-primary font-heading font-semibold text-sm"
               >
@@ -109,9 +123,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2" aria-hidden>
-          <span className="text-xs text-foreground-muted tracking-widest uppercase">Scroll</span>
-          <ArrowDown className="w-4 h-4 text-primary animate-bounce-scroll" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+          <div className="hidden md:flex flex-col items-center gap-2" aria-hidden>
+            <span className="text-xs text-foreground-muted tracking-widest uppercase">Scroll</span>
+            <ArrowDown className="w-4 h-4 text-primary animate-bounce-scroll" />
+          </div>
+          {pinned && <SkipLink to="#about" />}
         </div>
       </div>
     </section>

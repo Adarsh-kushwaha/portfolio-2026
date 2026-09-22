@@ -1,21 +1,10 @@
 import { renderHome } from "@/test/render-home";
-
-/** Makes the environment capable of 3D, then lets each test knock out one trigger. */
-function stubCapableDevice() {
-  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockImplementation(
-    ((type: string) => (type === "webgl2" || type === "webgl" ? ({} as RenderingContext) : null)) as never,
-  );
-  vi.spyOn(navigator, "hardwareConcurrency", "get").mockReturnValue(8);
-  Object.defineProperty(navigator, "connection", { value: { saveData: false, effectiveType: "4g" }, configurable: true });
-}
+import { restoreDevice, stubCapableDevice } from "@/test/devices";
 
 const renderMode = () => document.querySelector("[data-render-mode]")?.getAttribute("data-render-mode");
 
 describe("render mode", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-    Reflect.deleteProperty(navigator, "connection");
-  });
+  afterEach(restoreDevice);
 
   it("uses 3D on a capable device", () => {
     stubCapableDevice();
