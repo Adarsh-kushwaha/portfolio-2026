@@ -1,78 +1,110 @@
 /**
- * Index — Main portfolio page for Adarsh Kushwaha
- * Composes all sections with smooth scroll + theme toggle
+ * Index — the portfolio as one scroll-driven story:
+ * Hero → About → Impact → Skills → Journey → Work → Beyond → Contact.
+ * Design decisions live in design-system/adarsh-kushwaha/MASTER.md.
  */
-import { useState, useEffect } from "react";
-import Navbar from "@/components/portfolio/Navbar";
-import Hero from "@/components/portfolio/Hero";
-import About from "@/components/portfolio/About";
-import Arena from "@/components/portfolio/arena/Arena";
-import Campaign from "@/components/portfolio/campaign/Campaign";
-import Beyond from "@/components/portfolio/beyond/Beyond";
-import Contact from "@/components/portfolio/Contact";
-import { RenderModeProvider, useRenderMode } from "@/lib/render-mode";
-import { ThreeProvider } from "@/lib/three-loader";
+import { useEffect, useRef, useState } from "react";
+import SiteNav from "@/components/site/SiteNav";
+import Hero from "@/components/site/Hero";
+import TechMarquee from "@/components/site/TechMarquee";
+import About from "@/components/site/About";
+import Impact from "@/components/site/Impact";
+import Skills from "@/components/site/Skills";
+import Journey from "@/components/site/Journey";
+import Work from "@/components/site/Work";
+import Beyond from "@/components/site/Beyond";
+import Contact from "@/components/site/Contact";
+import Footer from "@/components/site/Footer";
+import { RenderModeProvider } from "@/lib/render-mode";
 import { SmoothScrollProvider } from "@/lib/smooth-scroll";
-
+import { hasFinePointer, prefersReducedMotion } from "@/lib/motion";
 
 type Theme = "dark" | "light";
+const THEME_KEY = "portfolio-theme";
 
-export default function Index() {
-  return (
-    <RenderModeProvider>
-      <SmoothScrollProvider>
-        <ThreeProvider>
-          <HomePage />
-        </ThreeProvider>
-      </SmoothScrollProvider>
-    </RenderModeProvider>
-  );
-}
-
-function HomePage() {
-  const renderMode = useRenderMode();
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  // Persist theme preference
-  useEffect(() => {
-    const saved = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (saved) setTheme(saved);
-  }, []);
+function useTheme() {
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      return (localStorage.getItem(THEME_KEY) as Theme | null) ?? "dark";
+    } catch {
+      return "dark";
+    }
+  });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.add("light");
-      root.classList.remove("dark");
-    } else {
-      root.classList.add("dark");
-      root.classList.remove("light");
+    root.classList.toggle("light", theme === "light");
+    root.classList.toggle("dark", theme === "dark");
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      /* storage blocked: theme still applies for this visit */
     }
-    localStorage.setItem("portfolio-theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  return [theme, () => setTheme((t) => (t === "dark" ? "light" : "dark"))] as const;
+}
+
+/** A soft glow that trails the pointer across the page (fine pointers, motion allowed). */
+function CursorGlow() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !hasFinePointer() || prefersReducedMotion()) return;
+    let frame = 0;
+    const onMove = (e: PointerEvent) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        el.style.transform = `translate3d(${e.clientX - 300}px, ${e.clientY - 300}px, 0)`;
+        el.style.opacity = "1";
+      });
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-background text-foreground" data-render-mode={renderMode}>
-      {/* SEO meta rendered in index.html — update title/description there */}
+    <div
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none fixed left-0 top-0 z-0 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,hsl(var(--primary)/0.07),transparent_65%)] opacity-0 transition-opacity duration-500"
+    />
+  );
+}
 
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+export default function Index() {
+  const [theme, toggleTheme] = useTheme();
 
-      <main>
-        <Hero />
-        <About />
-        <Arena />
-        <Campaign />
-        <Beyond />
-        <Contact />
-        {/* Footer */}
-        <footer className="border-t border-border py-8">
-          <div className="container-max px-4 sm:px-6 lg:px-8 text-center text-sm text-foreground-muted">
-            Made by Adarsh with ❤️ 
-          </div>
-        </footer>
-      </main>
-    </div>
+  return (
+    <RenderModeProvider>
+      <SmoothScrollProvider>
+        <div className="relative min-h-screen overflow-x-clip bg-background text-foreground">
+          <a
+            href="#about"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+          >
+            Skip to content
+          </a>
+          <CursorGlow />
+          <SiteNav theme={theme} onToggleTheme={toggleTheme} />
+          <main className="relative z-10">
+            <Hero />
+            <TechMarquee />
+            <About />
+            <Impact />
+            <Skills />
+            <Journey />
+            <Work />
+            <Beyond />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </SmoothScrollProvider>
+    </RenderModeProvider>
   );
 }

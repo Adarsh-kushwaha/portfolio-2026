@@ -13,7 +13,8 @@ export default {
     extend: {
       fontFamily: {
         heading: ["'Space Grotesk'", "sans-serif"],
-        body: ["'Inter'", "sans-serif"],
+        body: ["'DM Sans'", "sans-serif"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -37,6 +38,7 @@ export default {
           text: "hsl(210 30% 95%)",
           muted: "hsl(210 20% 65%)",
         },
+        violet: "hsl(var(--violet))",
         gold: {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",
@@ -104,6 +106,18 @@ export default {
           "0%": { backgroundPosition: "-200% center" },
           "100%": { backgroundPosition: "200% center" },
         },
+        aurora: {
+          "0%, 100%": { transform: "translate3d(0, 0, 0) scale(1)" },
+          "33%": { transform: "translate3d(8%, -6%, 0) scale(1.12)" },
+          "66%": { transform: "translate3d(-6%, 6%, 0) scale(0.94)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        "spin-slow": {
+          to: { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -111,12 +125,19 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
         shimmer: "shimmer 2s linear infinite",
+        aurora: "aurora 12s ease-in-out infinite",
+        "aurora-slow": "aurora 18s ease-in-out infinite reverse",
+        marquee: "marquee 40s linear infinite",
+        "marquee-reverse": "marquee 46s linear infinite reverse",
+        "orbit": "spin-slow 28s linear infinite",
+        "orbit-reverse": "spin-slow 40s linear infinite reverse",
       },
       backgroundImage: {
         "gradient-teal": "var(--gradient-teal)",
         "gradient-gold": "var(--gradient-gold)",
         "gradient-hero": "var(--gradient-hero)",
         "gradient-card": "var(--gradient-card)",
+        "gradient-aurora": "var(--gradient-aurora)",
       },
       boxShadow: {
         teal: "var(--shadow-teal)",
